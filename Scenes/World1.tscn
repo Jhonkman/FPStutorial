@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=1]
 
-[sub_resource type="ConcavePolygonShape" id=4]
+[sub_resource type="ConcavePolygonShape" id=2]
 data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
+
+[sub_resource type="SphereMesh" id=3]
+
+[sub_resource type="SphereShape" id=4]
 
 [node name="World" type="Spatial"]
 
@@ -13,10 +17,90 @@ data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 10.1675, 0, 0, 0, 1, 0, 0, 0, 11.6985, -0.0851486, -3.52815, -0.024641 )
-mesh = SubResource( 3 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="MeshInstance"]
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="Enemy" type="StaticBody" parent="." groups=[
+"Enemies",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.72939 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Enemy"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Enemy"]
 shape = SubResource( 4 )
+
+[node name="Enemy2" type="StaticBody" parent="." groups=[
+"Enemies",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.00239 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Enemy2"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Enemy2"]
+shape = SubResource( 4 )
+
+[node name="Enemy3" type="StaticBody" parent="." groups=[
+"Enemies",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.53796, 0, -0.133172 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Enemy3"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Enemy3"]
+shape = SubResource( 4 )
+
+[node name="Enemy4" type="StaticBody" parent="." groups=[
+"Enemies",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.71086, 0, -0.133172 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Enemy4"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Enemy4"]
+shape = SubResource( 4 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -178.0
+margin_top = -73.0
+text = "Ammo
+2/2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InteractionLabel" type="Label" parent="UI"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -39.0
+text = "Press E to interact"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
