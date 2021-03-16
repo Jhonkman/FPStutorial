@@ -2,7 +2,7 @@ extends RayCast
 
 var current_collider
 
-onready var interaction_label = get_node("/root/World/UI/Interaction Label")
+onready var interaction_label = get_node("/root/World/UI/InteractionLabel")
 
 func _ready():
 	set_interaction_text("")
@@ -17,9 +17,10 @@ func _process(delta):
 		
 		if Input.is_action_just_pressed("Interact"):
 			collider.interact()
-			set_interaction_text(collider.get_interaction_text)
+			set_interaction_text(collider.get_interaction_text())
 	elif current_collider:
 		current_collider = null
+		set_interaction_text("")
 
 func set_interaction_text(text):
 	if !text:
