@@ -30,19 +30,24 @@ func _process(delta):
 
 func _physics_process(delta):
 	var head_basis = head.get_global_transform().basis
+	
 	var direction = Vector3()
 	if Input.is_action_pressed("move_forward"):
 		direction -= head_basis.z
 	elif Input.is_action_pressed("move_backward"):
 		direction += head_basis.z
-	if Input.is_action_pressed("move_right"):
-		direction += head_basis.x
+	
 	if Input.is_action_pressed("move_left"):
 		direction -= head_basis.x
-	if Input.is_action_pressed("jump") and is_on_floor():
-		velocity.y += jump_power
+	elif Input.is_action_pressed("move_right"):
+		direction += head_basis.x
+	
 	direction = direction.normalized()
 	
 	velocity = velocity.linear_interpolate(direction * speed, acceleration * delta)
-	velocity.y += -gravity
+	velocity.y -= gravity
+	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y += jump_power
+	
 	velocity = move_and_slide(velocity, Vector3.UP)
