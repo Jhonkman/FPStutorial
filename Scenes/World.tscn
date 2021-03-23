@@ -16,6 +16,9 @@ albedo_color = Color( 0.247059, 0.768627, 0.317647, 1 )
 
 [node name="World" type="Spatial"]
 
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7, -0.8, 17 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24 )
 
@@ -142,7 +145,7 @@ width = 16.0
 depth = 1.0
 
 [node name="CSGBox5" type="CSGBox" parent="Environment"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 33.5, -1, 18.1 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17.5, -1, 18.1 )
 material_override = SubResource( 3 )
 use_collision = true
 width = 5.2
@@ -202,6 +205,3 @@ stretch_mode = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
-
-[node name="Enemy" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4926, 0, 15.5793 )
